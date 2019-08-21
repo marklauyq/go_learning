@@ -20,3 +20,8 @@ and view it.
 * [ ] Write a script to check daily the latest chapters
 * [x] Make use of unit testing
 * [ ] Able to pull complete books
+
+## Updates
+- 21-08-2019
+    - Completed the scraper package
+    - I am going to try and split the different services into smaller packages

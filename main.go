@@ -1,7 +1,7 @@
 package main
 
 import (
-    s "go_learning/scraper"
+    s "github.com/marklauyq/go_learning/scraper"
 )
 
 func main() {

@@ -8,10 +8,15 @@ and view it.
 
 ## Things to accomplish
 
-* [ ] Make a request to pull data from the website
-* [ ] Able to read the HTML data
-* [ ] Try to get the next chapter
+* [x] Make a request to pull data from the website
+* [x] Able to read the HTML data
+* [x] Try to get the next chapter
 * [ ] Store what is the latest chapter that we have pulled
+    * [ ] Set up a mysql DB
+    * [ ] store the data in the DB
+    * [ ] Able to pull data from the DB
 * [ ] Set up a server to grab the data
 * [ ] View my current read chapters
 * [ ] Write a script to check daily the latest chapters
+* [x] Make use of unit testing
+* [ ] Able to pull complete books

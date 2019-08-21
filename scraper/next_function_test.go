@@ -1,4 +1,4 @@
-package scrapper
+package scraper
 
 import "testing"
 
@@ -12,10 +12,12 @@ func Test_Wuxiaworld_Next_Button_Works(t *testing.T) {
     }
 }
 
-func Test_Wuxiaworld_Next_Button_Can_Detect_Previews(t *testing.T) {
-
-}
-
 func Test_Boxnovel_next_button_can_be_found(t *testing.T) {
+    c, _ := getChapter("https://boxnovel.com/novel/release-that-witch/chapter-1497/")
 
+    nextChapter := BoxnovelNextSelector(c)
+
+    if nextChapter != "https://boxnovel.com/novel/release-that-witch/chapter-1498-end" {
+        t.Error("Expected to retrieve next chapter but received" , nextChapter)
+    }
 }

@@ -1,15 +1,13 @@
 package main
 
 import (
-    "fmt"
-    s "go_learning/scrapper"
+    s "go_learning/scraper"
 )
 
 func main() {
-    fmt.Println(s.Start(
+    s.Start(
         "https://www.wuxiaworld.com/novel/dragon-prince-yuan/yz-chapter-1",
         "#chapter-content",
         s.WuxiaWorldNextSelector,
-    ),
     )
 }

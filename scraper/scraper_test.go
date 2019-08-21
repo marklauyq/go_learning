@@ -1,4 +1,4 @@
-package scrapper
+package scraper
 
 import (
     "testing"
@@ -20,10 +20,16 @@ func Test_loop_stops_once_there_is_no_next_page(t *testing.T) {
     b := Start("https://google.com", "Does not exist", WuxiaWorldNextSelector)
 
     if len(b.pages) > 0 {
-        t.Error("Not breaking out of the loop")
+        t.Error("There is a problem with the loop")
     }
-}
 
-func Test_loop_stops_once_the_chapter_is_preview(t *testing.T) {
+    b = Start(
+        "https://boxnovel.com/novel/release-that-witch/chapter-1497",
+        ".reading-content",
+        BoxnovelNextSelector,
+    )
 
+    if len(b.pages) != 2 {
+        t.Error("There should only be 2 pages" , len(b.pages))
+    }
 }

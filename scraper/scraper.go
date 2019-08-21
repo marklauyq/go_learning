@@ -1,17 +1,17 @@
-package scrapper
+package scraper
 
 import (
     "fmt"
     g "github.com/PuerkitoBio/goquery"
     "net/http"
+    "strings"
 )
 
 type Chapter g.Document
-
-type nextSelector func(*Chapter) string
+type page string
 
 type Book struct {
-    pages []string
+    pages []page
 }
 
 // Scrap makes a request to a website and returns the body as a string
@@ -33,24 +33,16 @@ func getChapter(url string) (*Chapter, error) {
     return &c, nil
 }
 
-func checkPreview(c *Chapter) bool {
-    return false
-}
-
 func Start(url, bodySelector string, next nextSelector) Book {
     b := Book{}
     pageUrl := url
     for {
         //get chapter
+        fmt.Println("Retrieving page : " , pageUrl)
         c, err := getChapter(pageUrl)
         if err != nil {
             fmt.Println("Error", err)
             return Book{}
-        }
-
-        //check if it is a preview
-        if checkPreview(c) {
-            break
         }
 
         body := c.Find(bodySelector).Text()
@@ -59,9 +51,9 @@ func Start(url, bodySelector string, next nextSelector) Book {
             break
 		}
 
-        b.pages = append(b.pages, body)
+        b.pages = append(b.pages, page(strings.TrimSpace(body)))
 
-        pageUrl := next(c)
+        pageUrl = next(c)
 
         if pageUrl == "" {
             break

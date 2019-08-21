@@ -6,6 +6,11 @@ import (
 )
 
 func main() {
-	fmt.Println(s.Scrap("https://www.wuxiaworld.com/novel/dragon-prince-yuan/yz-chapter-1"))
+	fmt.Println(s.Start(
+		"https://www.wuxiaworld.com/novel/dragon-prince-yuan/yz-chapter-1",
+		"#chapter-content",
+			s.WuxiaWorldNextSelector,
+		),
+	)
 }
 

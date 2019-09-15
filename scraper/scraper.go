@@ -45,6 +45,7 @@ func Start(url, bodySelector string, next nextSelector, b Book) Book {
             return Book{}
         }
 
+        b.LastChapter = pageUrl
         body := c.Find(bodySelector).Text()
 
         if body == "" {

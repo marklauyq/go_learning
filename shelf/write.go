@@ -9,7 +9,7 @@ import (
 func WriteBook(book s.Book) error{
     barcode := titleToFile(book.Title)
 
-    b, err := json.Marshal(book.Pages)
+    b, err := json.Marshal(book)
 
     if err != nil {
         return err

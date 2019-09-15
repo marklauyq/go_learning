@@ -9,7 +9,7 @@ import (
 
 func setup(){
     fmt.Println ("Creating the test book")
-    s := `["This is a test book", "There are only 2 pages on it"]`
+    s := `{"Title":"Test Book", "Pages":["First Chapter", "Second Chapter"], "LastChapter":"some-url-here"}`
 
     _ = ioutil.WriteFile("test_book.json", []byte(s) , 0666)
 }
@@ -43,9 +43,10 @@ func TestReadShouldReturnEmptyBookIfUnableToFind(t *testing.T) {
 }
 
 func TestReadShouldBeAbleToRetrieveTheBook(t *testing.T) {
-    book := GetBook("Test book")
+    book := GetBook("Test Book")
 
-    if book.Title != "Test book"{
+    fmt.Println(book)
+    if book.Title != "Test Book"{
         t.Error("There is a problem with the title")
     }
 

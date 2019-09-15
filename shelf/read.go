@@ -18,10 +18,8 @@ func GetBook(title string) s.Book {
         return s.Book{Title:title}
     }
 
-    book := s.Book{Title:title}
-    p := &book.Pages
-
-    err = json.Unmarshal(buf, p)
+    book := s.Book{}
+    err = json.Unmarshal(buf, &book)
 
     if err != nil {
         fmt.Println("There was an error decoding Json")

@@ -3,7 +3,7 @@ package shelf
 import (
     "encoding/json"
     "fmt"
-    s "go_learning/scraper"
+    s "github.com/marklauyq/go_learning/scraper"
     "io/ioutil"
 )
 

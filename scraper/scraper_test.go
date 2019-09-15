@@ -17,9 +17,9 @@ func Test_able_to_get_body_from_getChapter(t *testing.T) {
 }
 
 func Test_loop_stops_once_there_is_no_next_page(t *testing.T) {
-    b := Start("https://google.com", "Does not exist", WuxiaWorldNextSelector)
+    b := Start("https://google.com", "Does not exist", WuxiaWorldNextSelector, Book{})
 
-    if len(b.pages) > 0 {
+    if len(b.Pages) > 0 {
         t.Error("There is a problem with the loop")
     }
 
@@ -27,9 +27,10 @@ func Test_loop_stops_once_there_is_no_next_page(t *testing.T) {
         "https://boxnovel.com/novel/release-that-witch/chapter-1497",
         ".reading-content",
         BoxnovelNextSelector,
+        Book{},
     )
 
-    if len(b.pages) != 2 {
-        t.Error("There should only be 2 pages" , len(b.pages))
+    if len(b.Pages) != 2 {
+        t.Error("There should only be 2 pages" , len(b.Pages))
     }
 }

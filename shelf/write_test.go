@@ -8,7 +8,7 @@ import (
 
 func TestIfFileAlreadyExistIShouldAppend(t *testing.T) {
     book := GetBook("Test Book")
-    book.Pages = append(book.Pages, "Third Chapter");
+    book.Pages["chapter-3"] = "Chapter 3 here"
     book.Title = "New Book"
 
     err := WriteBook(book)

@@ -2,6 +2,9 @@ package scraper
 
 type nextSelector func(*Chapter) string
 
+var WuxiaWorldBody = "#chapter-content"
+var BoxnovelBody = ".reading-content"
+
 // WuxiaWorldNextSelector is the function that can be used to search for the next chapter in wuxia world
 func WuxiaWorldNextSelector(c *Chapter) string {
     path, status := c.Find(".next a").Attr("href")

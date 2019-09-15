@@ -14,7 +14,8 @@ func main() {
     scraper.Start(
         "https://url-here.com/path/here",
         ".selector #here",
-        scraper.BoxnovelNextSelector
+        scraper.BoxnovelNextSelector,
+        scraper.Book{Title:"Book Name"}
     )
 }
 ```
@@ -26,4 +27,9 @@ Chapter and search for the URL for the next chapter.
 Check out the `next_function.go` as an example and feel free to create
 you own and pass it into the Start function
 
-
+---
+Future updates,
+- I will need to move the book from scrapper over to the shelf library instead
+    - We are doing this because we do not want a cyclic dependency
+    - The book is more related to the shelf class which reads and writes to the book while the 
+    scrapper class main job is to scrap the websites.   

@@ -8,11 +8,6 @@ import (
 )
 
 type Chapter g.Document
-type page string
-
-type Book struct {
-    pages []page
-}
 
 // Scrap makes a request to a website and returns the body as a string
 func getChapter(url string) (*Chapter, error) {
@@ -33,12 +28,17 @@ func getChapter(url string) (*Chapter, error) {
     return &c, nil
 }
 
-func Start(url, bodySelector string, next nextSelector) Book {
-    b := Book{}
+// write will write the pages to a permanent storage.
+// for now we are writing it to a json file but we will move it to a DB in the future
+func write(title string) {
+
+}
+
+func Start(url, bodySelector string, next nextSelector, b Book) Book {
     pageUrl := url
     for {
         //get chapter
-        fmt.Println("Retrieving page : " , pageUrl)
+        fmt.Println("Retrieving Page : " , pageUrl)
         c, err := getChapter(pageUrl)
         if err != nil {
             fmt.Println("Error", err)
@@ -51,7 +51,12 @@ func Start(url, bodySelector string, next nextSelector) Book {
             break
 		}
 
-        b.pages = append(b.pages, page(strings.TrimSpace(body)))
+        p := Page(strings.TrimSpace(body))
+
+        //write to file
+
+        //append the Page to the book
+        b.Pages = append(b.Pages , p)
 
         pageUrl = next(c)
 

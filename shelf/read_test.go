@@ -2,15 +2,24 @@ package shelf
 
 import (
     "fmt"
+    "io/ioutil"
     "os"
     "testing"
 )
 
 func setup(){
-    fmt.Println("Running setup")
+    fmt.Println ("Creating the test book")
+    s := `["This is a test book", "There are only 2 pages on it"]`
+
+    _ = ioutil.WriteFile("test_book.json", []byte(s) , 0666)
 }
 func shutdown(){
-    fmt.Println("Running shutdown")
+    fmt.Println("Removing book")
+
+    err := os.Remove("test_book.json")
+    if err != nil{
+        fmt.Println("There was an issue removing the test file")
+    }
 }
 
 func TestMain(m *testing.M) {

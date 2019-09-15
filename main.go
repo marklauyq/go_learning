@@ -5,9 +5,14 @@ import (
 )
 
 func main() {
+    b := s.Book{
+        Title: "Dragon Prince Yuan",
+    }
+
     s.Start(
         "https://www.wuxiaworld.com/novel/dragon-prince-yuan/yz-chapter-1",
         "#chapter-content",
         s.WuxiaWorldNextSelector,
+        b,
     )
 }

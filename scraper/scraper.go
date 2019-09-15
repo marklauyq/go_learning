@@ -53,8 +53,6 @@ func Start(url, bodySelector string, next nextSelector, b Book) Book {
 
         p := Page(strings.TrimSpace(body))
 
-        //write to file
-
         //append the Page to the book
         b.Pages = append(b.Pages , p)
 

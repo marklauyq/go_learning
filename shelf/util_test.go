@@ -9,7 +9,7 @@ func TestTitleToFile(t *testing.T) {
 
     titleToTest := titleToFile(title)
 
-    if titleToTest != "hello_world"{
+    if titleToTest != "hello_world.json"{
         t.Errorf("Expected 'hello_world' got %s" , titleToTest)
     }
 }

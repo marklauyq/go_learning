@@ -8,29 +8,20 @@ import (
 
 func TestIfFileAlreadyExistIShouldAppend(t *testing.T) {
     book := GetBook("Test Book")
+    book.Pages = append(book.Pages, "Third Chapter");
+    book.Title = "New Book"
 
-    err := AddChapter(&book, "Third chapter here")
+    err := WriteBook(book)
 
-    if  err != nil {
-        t.Error("There was a problem adding a chapter")
-    }
-
-    if len(book.Pages) != 3 {
-        t.Error("The number of pages is wrong")
-    }
-}
-
-func TestIfFileDoesNotExistIShouldCreateNewFile(t *testing.T) {
-    book := GetBook("New Book")
-
-    err := AddChapter(&book, "First Chapter")
+    bookToTest := GetBook(book.Title)
 
     if  err != nil {
-        t.Error("There was a problem adding a chapter")
+        fmt.Println(err)
+        t.Error("There was a problem writing to book")
     }
 
-    if len(book.Pages) != 1 {
-        t.Error("The number of pages is wrong")
+    if len(bookToTest.Pages) != 3 {
+        t.Error("The number of pages is wrong expected 3 got" , len(bookToTest.Pages))
     }
 }
 

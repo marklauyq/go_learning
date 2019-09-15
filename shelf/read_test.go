@@ -20,6 +20,11 @@ func shutdown(){
     if err != nil{
         fmt.Println("There was an issue removing the test file")
     }
+
+    err = os.Remove("new_book.json")
+    if err != nil{
+        fmt.Println(err)
+    }
 }
 
 func TestMain(m *testing.M) {

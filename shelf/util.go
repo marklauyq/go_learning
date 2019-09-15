@@ -9,6 +9,7 @@ func titleToFile(title string) string {
     t := strings.TrimSpace(title)
     t = strings.ToLower(t)
     t = strings.ReplaceAll(t, " ", "_")
+    t = t + ".json"
 
     return t
 }

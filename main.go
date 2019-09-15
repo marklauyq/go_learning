@@ -6,7 +6,7 @@ import (
 
 func main() {
     b := s.Book{
-        Title: "Dragon Prince Yuan",
+        Title: "",
     }
 
     s.Start(

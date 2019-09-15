@@ -1,10 +1,25 @@
 package shelf
 
 import (
+    "encoding/json"
     s "github.com/marklauyq/go_learning/scraper"
+    "io/ioutil"
 )
 
-func AddChapter(book *s.Book, page s.Page) error{
+func WriteBook(book s.Book) error{
+    barcode := titleToFile(book.Title)
 
-    return nil;
+    b, err := json.Marshal(book.Pages)
+
+    if err != nil {
+        return err
+    }
+
+    err = ioutil.WriteFile(barcode, b, 0777)
+
+    if err != nil {
+        return err
+    }
+
+    return nil
 }

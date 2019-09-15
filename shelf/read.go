@@ -9,8 +9,6 @@ import (
 
 func GetBook(title string) s.Book {
     barcode := titleToFile(title)
-    barcode = barcode + ".json"
-
     //try to find the local file
     buf, err := ioutil.ReadFile(barcode)
 

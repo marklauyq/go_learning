@@ -3,7 +3,7 @@ package main
 import (
     "fmt"
     s "github.com/marklauyq/go_learning/scraper"
-    "go_learning/shelf"
+    "github.com/marklauyq/go_learning/shelf"
 )
 
 func main() {

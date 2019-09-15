@@ -24,13 +24,13 @@ func Test_loop_stops_once_there_is_no_next_page(t *testing.T) {
     }
 
     b = Start(
-        "https://boxnovel.com/novel/release-that-witch/chapter-1497",
+        "https://boxnovel.com/novel/release-that-witch/chapter-1496",
         ".reading-content",
         BoxnovelNextSelector,
         Book{},
     )
 
-    if len(b.Pages) != 2 {
+    if len(b.Pages) != 3 {
         t.Error("There should only be 2 pages" , len(b.Pages))
     }
 }

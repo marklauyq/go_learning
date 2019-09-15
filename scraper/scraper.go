@@ -42,7 +42,7 @@ func Start(url, bodySelector string, next nextSelector, b Book) Book {
         c, err := getChapter(pageUrl)
         if err != nil {
             fmt.Println("Error", err)
-            return Book{}
+            return b
         }
 
         b.LastChapter = pageUrl

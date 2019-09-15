@@ -7,12 +7,14 @@ import (
 )
 
 func main() {
-    b := s.Book{
-        Title: "Death March",
+    b := shelf.GetBook("Death March")
+
+    if len(b.Pages) == 0 {
+        b.LastChapter = "https://boxnovel.com/novel/death-march-kara-hajimaru-isekai-kyusoukyoku-wn/chapter-1"
     }
 
-    s.Start(
-        "https://boxnovel.com/novel/death-march-kara-hajimaru-isekai-kyusoukyoku-wn/chapter-1",
+    b = s.Start(
+        b.LastChapter,
         s.BoxnovelBody,
         s.BoxnovelNextSelector,
         b,

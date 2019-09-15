@@ -27,7 +27,7 @@ func Test_loop_stops_once_there_is_no_next_page(t *testing.T) {
         "https://boxnovel.com/novel/release-that-witch/chapter-1496",
         ".reading-content",
         BoxnovelNextSelector,
-        Book{},
+        Book{Pages: map[string]Page{}},
     )
 
     if len(b.Pages) != 3 {

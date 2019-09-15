@@ -55,7 +55,7 @@ func Start(url, bodySelector string, next nextSelector, b Book) Book {
         p := Page(strings.TrimSpace(body))
 
         //append the Page to the book
-        b.Pages = append(b.Pages , p)
+        b.Pages[pageUrl] = p
 
         pageUrl = next(c)
 

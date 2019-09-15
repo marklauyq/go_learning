@@ -4,7 +4,7 @@ type Page string
 
 type Book struct {
     Title string
-    Pages []Page
+    Pages map[string]Page
     LastChapter string
 }
 

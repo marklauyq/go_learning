@@ -2,6 +2,7 @@ package shelf
 
 import (
     "encoding/json"
+    "fmt"
     s "github.com/marklauyq/go_learning/scraper"
     "io/ioutil"
     "log"
@@ -38,11 +39,13 @@ func WriteToTxt(book s.Book) error {
         return err
     }
 
-    for chapter, _ := range book.Pages {
+    for url, chapter := range book.Pages {
+        fmt.Println("Writing URL : " + url)
+        fmt.Println(chapter)
         if _, err := f.WriteString("----- END ------"); err != nil {
             log.Println(err)
         }
-        if _, err := f.WriteString(chapter); err != nil {
+        if _, err := f.WriteString(string(chapter)); err != nil {
             log.Println(err)
         }
     }

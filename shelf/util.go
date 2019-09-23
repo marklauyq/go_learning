@@ -13,3 +13,12 @@ func titleToFile(title string) string {
 
     return t
 }
+
+func titleToFileWithExtensions(title string, ext string) string {
+    t := strings.TrimSpace(title)
+    t = strings.ToLower(t)
+    t = strings.ReplaceAll(t, " ", "_")
+    t = t + ext
+
+    return t
+}

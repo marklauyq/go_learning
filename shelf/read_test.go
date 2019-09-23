@@ -12,7 +12,11 @@ func setup(){
     s := `{"Title":"Test Book", "Pages":{"Chapter-1":"First Chapter", "Chapter-2":"Second Chapter"}, 
 "LastChapter":"some-url-here"}`
 
-    _ = ioutil.WriteFile("test_book.json", []byte(s) , 0666)
+    err := ioutil.WriteFile("test_book.json", []byte(s) , 0666)
+
+    if err != nil {
+        fmt.Println("There was an issue creating the test book", err)
+    }
 }
 func shutdown(){
     fmt.Println("Removing book")

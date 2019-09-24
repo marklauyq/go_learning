@@ -42,7 +42,7 @@ func WriteToTxt(book s.Book) error {
     for url, chapter := range book.Pages {
         fmt.Println("Writing URL : " + url)
         fmt.Println(chapter)
-        if _, err := f.WriteString("----- END ------"); err != nil {
+        if _, err := f.WriteString("\n\n ----- END ------ \n\n"); err != nil {
             log.Println(err)
         }
         if _, err := f.WriteString(string(chapter)); err != nil {

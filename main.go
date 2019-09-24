@@ -25,4 +25,10 @@ func main() {
     if err != nil {
         fmt.Println(err)
     }
+
+    err = shelf.WriteToTxt(b)
+
+    if err != nil {
+        fmt.Println(err)
+    }
 }

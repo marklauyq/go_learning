@@ -22,3 +22,9 @@ func titleToFileWithExtensions(title string, ext string) string {
 
     return t
 }
+
+func cleanString(str string) string {
+    t := strings.ReplaceAll(str, "TLN:", "tln-")
+
+    return t
+}

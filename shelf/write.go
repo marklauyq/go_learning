@@ -63,7 +63,8 @@ func WriteToEpub(book Book) error {
     for index, chapter := range book.Pages {
         fmt.Println("Writing URL : " + string(index))
         chapterStr := fmt.Sprintf(`Chapter %v` , chapterNum)
-        sectionBody := fmt.Sprintf(`<h1> %s</h1> <p> %s </p>`, chapterStr , string(chapter))
+        content := cleanString(string(chapter))
+        sectionBody := fmt.Sprintf(`<h1> %s</h1> <p> %s </p>`, chapterStr , content)
 
         chapterNum += 1
         _, err := e.AddSection(sectionBody, chapterStr,"","")

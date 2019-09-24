@@ -52,7 +52,7 @@ func WriteToTxt(book Book) error {
     return f.Close()
 }
 
-func WriteToEpub(book Book) error {
+func WriteToEpub(book Book, path string) error {
     barcode := titleToFileWithExtensions(book.Title, ".epub")
 
     e := epub.NewEpub(book.Title)
@@ -74,7 +74,7 @@ func WriteToEpub(book Book) error {
         }
     }
 
-    err := e.Write("./" + barcode)
+    err := e.Write(path + "/" + barcode)
 
     if err != nil {
         return err

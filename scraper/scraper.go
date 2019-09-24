@@ -3,6 +3,7 @@ package scraper
 import (
     "fmt"
     g "github.com/PuerkitoBio/goquery"
+    "github.com/marklauyq/go_learning/shelf"
     "net/http"
     "strings"
 )
@@ -28,15 +29,10 @@ func getChapter(url string) (*Chapter, error) {
     return &c, nil
 }
 
-// write will write the pages to a permanent storage.
-// for now we are writing it to a json file but we will move it to a DB in the future
-func write(title string) {
-
-}
-
-func Start(url, bodySelector string, next nextSelector, b Book) Book {
+func Start(url, bodySelector string, next nextSelector, b shelf.Book) shelf.Book {
     pageUrl := url
     for {
+
         //get chapter
         fmt.Println("Retrieving Page : " , pageUrl)
         c, err := getChapter(pageUrl)
@@ -52,10 +48,15 @@ func Start(url, bodySelector string, next nextSelector, b Book) Book {
             break
 		}
 
-        p := Page(strings.TrimSpace(body))
+        fmt.Println(b.Urls[pageUrl])
+        if b.Urls[pageUrl] != true{
+            p := shelf.Page(strings.TrimSpace(body))
 
-        //append the Page to the book
-        b.Pages[pageUrl] = p
+            //append the Page to the book
+            b.Pages = append(b.Pages, p)
+
+            b.Urls[pageUrl] = true
+        }
 
         pageUrl = next(c)
 

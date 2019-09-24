@@ -1,6 +1,7 @@
 package scraper
 
 import (
+    "github.com/marklauyq/go_learning/shelf"
     "testing"
 )
 
@@ -17,7 +18,7 @@ func Test_able_to_get_body_from_getChapter(t *testing.T) {
 }
 
 func Test_loop_stops_once_there_is_no_next_page(t *testing.T) {
-    b := Start("https://google.com", "Does not exist", WuxiaWorldNextSelector, Book{})
+    b := Start("https://google.com", "Does not exist", WuxiaWorldNextSelector, shelf.Book{})
 
     if len(b.Pages) > 0 {
         t.Error("There is a problem with the loop")
@@ -27,10 +28,12 @@ func Test_loop_stops_once_there_is_no_next_page(t *testing.T) {
         "https://boxnovel.com/novel/release-that-witch/chapter-1496",
         ".reading-content",
         BoxnovelNextSelector,
-        Book{Pages: map[string]Page{}},
+        shelf.Book{Pages: []shelf.Page{}, Urls:make(map[string]bool)},
     )
 
     if len(b.Pages) != 3 {
         t.Error("There should only be 2 pages" , len(b.Pages))
     }
 }
+
+

@@ -4,6 +4,7 @@ import (
     "encoding/json"
     "fmt"
     s "github.com/marklauyq/go_learning/scraper"
+    epub "github.com/bmaupin/go-epub"
     "io/ioutil"
     "log"
     "os"
@@ -41,7 +42,6 @@ func WriteToTxt(book s.Book) error {
 
     for url, chapter := range book.Pages {
         fmt.Println("Writing URL : " + url)
-        fmt.Println(chapter)
         if _, err := f.WriteString("\n\n ----- END ------ \n\n"); err != nil {
             log.Println(err)
         }
@@ -51,4 +51,34 @@ func WriteToTxt(book s.Book) error {
     }
 
     return f.Close()
+}
+
+func WriteToEpub(book s.Book) error {
+    barcode := titleToFileWithExtensions(book.Title, ".epub")
+
+    e := epub.NewEpub(book.Title)
+
+    e.SetAuthor("Web Novels")
+
+    chapterNum := 1
+    for url, chapter := range book.Pages {
+        fmt.Println("Writing URL : " + url)
+        chapterStr := fmt.Sprintf(`Chapter %v` , chapterNum)
+        sectionBody := fmt.Sprintf(`<h1> %s</h1> <p> %s </p>`, chapterStr , string(chapter))
+
+        chapterNum += 1
+        _, err := e.AddSection(sectionBody, chapterStr,url,"")
+
+        if err != nil{
+            fmt.Println("ERROR " , err )
+        }
+    }
+
+    err := e.Write(barcode)
+
+    if err != nil {
+        return err
+    }
+
+    return nil
 }

@@ -30,6 +30,11 @@ func shutdown(){
     if err != nil{
         fmt.Println(err)
     }
+
+    err = os.Remove("new_book.epub")
+    if err != nil{
+        fmt.Println(err)
+    }
 }
 
 func TestMain(m *testing.M) {

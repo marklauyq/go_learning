@@ -3,8 +3,8 @@ package shelf
 import (
     "encoding/json"
     "fmt"
+    "github.com/bmaupin/go-epub"
     s "github.com/marklauyq/go_learning/scraper"
-    epub "github.com/bmaupin/go-epub"
     "io/ioutil"
     "log"
     "os"

@@ -9,7 +9,7 @@ import (
 
 func setup(){
     fmt.Println ("Creating the test book")
-    s := `{"Title":"Test Book", "Pages":{"Chapter-1":"First Chapter", "Chapter-2":"Second Chapter"}, 
+    s := `{"Title":"Test Book", "Pages":["First Chapter", "Second Chapter"], 
 "LastChapter":"some-url-here"}`
 
     err := ioutil.WriteFile("test_book.json", []byte(s) , 0666)

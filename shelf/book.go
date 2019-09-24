@@ -1,10 +1,11 @@
-package scraper
+package shelf
 
 type Page string
 
 type Book struct {
     Title string
-    Pages map[string]Page
+    Pages []Page
+    Urls map[string]bool
     LastChapter string
 }
 

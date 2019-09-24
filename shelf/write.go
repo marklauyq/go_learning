@@ -4,13 +4,12 @@ import (
     "encoding/json"
     "fmt"
     "github.com/bmaupin/go-epub"
-    s "github.com/marklauyq/go_learning/scraper"
     "io/ioutil"
     "log"
     "os"
 )
 
-func WriteBook(book s.Book) error{
+func WriteBook(book Book) error{
     barcode := titleToFile(book.Title)
 
     b, err := json.Marshal(book)
@@ -29,7 +28,7 @@ func WriteBook(book s.Book) error{
 }
 
 
-func WriteToTxt(book s.Book) error {
+func WriteToTxt(book Book) error {
     barcode := titleToFileWithExtensions(book.Title, ".txt")
 
     f, err := os.OpenFile(barcode,
@@ -40,8 +39,8 @@ func WriteToTxt(book s.Book) error {
         return err
     }
 
-    for url, chapter := range book.Pages {
-        fmt.Println("Writing URL : " + url)
+    for index, chapter := range book.Pages {
+        fmt.Println("Writing URL : " + string(index))
         if _, err := f.WriteString("\n\n ----- END ------ \n\n"); err != nil {
             log.Println(err)
         }
@@ -53,7 +52,7 @@ func WriteToTxt(book s.Book) error {
     return f.Close()
 }
 
-func WriteToEpub(book s.Book) error {
+func WriteToEpub(book Book) error {
     barcode := titleToFileWithExtensions(book.Title, ".epub")
 
     e := epub.NewEpub(book.Title)
@@ -61,13 +60,13 @@ func WriteToEpub(book s.Book) error {
     e.SetAuthor("Web Novels")
 
     chapterNum := 1
-    for url, chapter := range book.Pages {
-        fmt.Println("Writing URL : " + url)
+    for index, chapter := range book.Pages {
+        fmt.Println("Writing URL : " + string(index))
         chapterStr := fmt.Sprintf(`Chapter %v` , chapterNum)
         sectionBody := fmt.Sprintf(`<h1> %s</h1> <p> %s </p>`, chapterStr , string(chapter))
 
         chapterNum += 1
-        _, err := e.AddSection(sectionBody, chapterStr,url,"")
+        _, err := e.AddSection(sectionBody, chapterStr,"","")
 
         if err != nil{
             fmt.Println("ERROR " , err )

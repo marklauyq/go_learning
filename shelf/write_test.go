@@ -8,7 +8,7 @@ import (
 
 func TestIfFileAlreadyExistIShouldAppend(t *testing.T) {
     book := GetBook("Test Book")
-    book.Pages["chapter-3"] = "Chapter 3 here"
+    book.Pages = append(book.Pages,"Chapter 3 here")
     book.Title = "New Book"
 
     err := WriteBook(book)
@@ -28,7 +28,7 @@ func TestIfFileAlreadyExistIShouldAppend(t *testing.T) {
 
 func TestWriteToEpub(t *testing.T) {
     book := GetBook("Test Book")
-    book.Pages["chapter-3"] = "Chapter 3 here"
+    book.Pages = append(book.Pages,"Chapter 3 here")
     book.Title = "New Book"
 
     err := WriteToEpub(book)

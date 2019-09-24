@@ -74,7 +74,7 @@ func WriteToEpub(book s.Book) error {
         }
     }
 
-    err := e.Write(barcode)
+    err := e.Write("./" + barcode)
 
     if err != nil {
         return err

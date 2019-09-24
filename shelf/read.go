@@ -14,7 +14,7 @@ func GetBook(title string) Book {
     if err != nil {
         fmt.Println("No book was found ")
         fmt.Println(err)
-        return Book{Title:title, Pages:[]Page{}, Urls: map[string]bool{}}
+        return Book{Title:title, Pages:[]Page{}, Urls: make(map[string]bool)}
     }
 
     book := Book{}
@@ -23,7 +23,7 @@ func GetBook(title string) Book {
     if err != nil {
         fmt.Println("There was an error decoding Json")
         fmt.Println(err)
-        return Book{Title:title, Pages:[]Page{}, Urls: map[string]bool{}}
+        return Book{Title:title, Pages:[]Page{}, Urls: make(map[string]bool)}
     }
 
     return book

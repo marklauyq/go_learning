@@ -7,6 +7,7 @@ import (
     "io/ioutil"
     "log"
     "os"
+    "strconv"
 )
 
 func WriteBook(book Book) error{
@@ -61,7 +62,7 @@ func WriteToEpub(book Book, path string) error {
 
     chapterNum := 1
     for index, chapter := range book.Pages {
-        fmt.Println("Writing URL : " + string(index))
+        fmt.Println("Writing URL : " + strconv.Itoa(index))
         chapterStr := fmt.Sprintf(`Chapter %v` , chapterNum)
         content := cleanString(string(chapter))
         sectionBody := fmt.Sprintf(`<h1> %s</h1> <p> %s </p>`, chapterStr , content)
